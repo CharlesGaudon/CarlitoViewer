@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.infotel.tutocordova" version="0.0.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Carlito viewer</name>
+    <description>
+        L'application mobile pour afficher les albums photos de Carlito
+    </description>
+    <author email="charles.gaudon@infotel.com" href="http://cordova.io">
+        Pixem
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <preference name="fullscreen" value="true" />
+    <preference name="webviewbounce" value="false" />
+</widget>

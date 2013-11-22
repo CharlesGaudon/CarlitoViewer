@@ -1,0 +1,102 @@
+@import "compass";
+
+
+@include global-reset;
+
+
+$couleur:#11a7ab; 
+
+@mixin bouton($img) {
+	@include background-image(image-url($img, false, false), 
+                  linear-gradient(top left, #333, #AABEDF),
+                  radial-gradient(#c00, #fff 100px));
+		background-repeat: no-repeat;
+		background-position:center center;
+		display: block;
+		width: 50%;
+		height: 60px; line-height: 60px;
+		float:left; 
+		text-decoration: none;
+		@include transition-duration;
+		/*border-style:none;*/
+}
+
+*{@include box-sizing(border-box);}
+
+body {
+	background-color: #1F263D;
+	color:#AAA;
+}
+
+i{display: inline-block;}
+
+.header {
+	position: absolute;
+	top:0; left:0; right:0;
+	height: 60px;
+	line-height:60px;
+	color: #FFF;
+	text-transform: uppercase;
+	text-align: center;
+	background-color: $couleur;
+	@include border-radius(5px);
+	@include box-shadow;
+}
+
+.view {
+	position:absolute;
+	top: 65px; right: 0; bottom:60px; left:0;	
+	
+}  
+
+.panel{
+	position:absolute;
+	top: 0; right: 0; bottom:0; left:0;
+	overflow-x:hidden;
+	overflow-y:scroll;
+	-webkit-overflow-scrolling:touch;
+	@include transition-duration(.5s);
+}
+
+.panel-padding {
+	padding:0 25px;
+}
+
+.left {
+	@include transform(translate3D(-100%,0,0));
+}
+
+.center {
+	@include transform(translate3D(0,0,0));
+}
+
+.right {
+	@include transform(translate3D(100%,0,0));
+}
+
+
+.nav {
+	position: absolute;
+	bottom: 0;left: 0; right: 0;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	background-color: #4f597b;
+	@include clearfix;
+	a {
+
+	}
+	a:first-child{
+		border-right: 1px solid #1f253d;
+	}
+	.bouton_actif{
+		border-top: 3px solid $couleur;
+	}
+	#icon-home {
+		@include bouton("home.png");
+	}
+	#icon-about { 
+		@include bouton("about.png");
+	} 
+}
+

@@ -1,0 +1,62 @@
+<section ng-controller="homeCtrl">
+	
+	<div class="loader" ng-show="loader">
+		
+	</div>
+	
+
+	<section class="panel panel-padding"
+	ng-class="{center:panel==0, left:panel==1, leftleft:panel==2}">
+		<form ng-submit="display_gallery()">
+			<p>
+				<input class="text" type="text" placeholder="Afficher une gallerie Carlito" ng-model="galleryUrl">
+			</p>
+			<p>
+				<input class="submit" type="submit" value="Afficher" class="submit">
+			</p>
+		</form>
+	</section>
+
+
+	<a class="back" ng-hide="panel==0" ng-click="panel=panel-1;loader=false;"></a>
+	<a class="next" ng-hide="nocontent || panel==2" ng-click="panel=panel+1"></a>
+	<input type="text" id="test_scale" value="{{last_scale}}" style=" display: block;position: absolute;top: -60px; left:80; z-index: 10;">
+
+	<section class="panel right"
+        ng-class="{left:panel==2, center:panel==1, right:panel==0}">
+
+       		<a id="parent" ng-hide="root_folder" ng-click="display_gallery_up()">
+						<img src="css/img/up.png" style="margin-top:10px;margin-left:10px;"> Répertoire parent<br/><br/>
+			</a>
+			<accordion close-others="true">
+				<accordion-group heading="Sous répertoires"> 
+					<div class="row" ng-repeat="gal in gallery | filter:filter_folder" ng-thumb="{{galleryUrlSansPhp}}{{gal.nomFichier}}" ng-click="display_gallery(gal.repertoire)">
+						{{removePrefix(gal.titre)}}
+					</div>
+				</accordion-group>
+
+				<accordion-group heading="Photos"> 
+
+					<div class="row_content" ng-repeat="gal in gallery | filter:filter_content" >
+						<center><img class="img_list" src="{{galleryUrlSansPhp}}{{gal.nomVignette}}" ng-click="display_content(gal.nomFichier)"><br/>{{gal.titre}}</center>
+					</div>
+				</accordion-group>
+			</accordion>
+
+
+
+			
+			<!--<img ng-repeat="gal in gallery | filter:filter_content" src="{{galleryUrlSansPhp}}{{gal.nomVignette}}" ng-click="display_content($index)">-->
+				
+		
+	</section>
+
+
+	<section class="panel right_view_content" ng-class="{center:panel==2, right:panel==1, right_view_content:panel==0}">
+       <center>
+		<img class="img_content" id="img_content_id" ng-imgload ng-src="{{imgToDisplay}}" ng-style="style_paz()" hm-doubletap="paz_reset($event)" hm-transform="paz($event)" hm-options="{tap_always: false}" hm-transformend="paz_end($event)" hm-gragend="drag_end($event)">
+		</center>
+
+
+	</section>
+</section>
